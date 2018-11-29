@@ -1,11 +1,11 @@
 ## Maintained by: [MariaDB](https://mariadb.com/)
 
-This is the Git repo of OpenShift compliant docker images for MariaDB Server, [mariadb-server-openshift](https://github.com/ianmaguire/mariadb-server-openshift)
+This is the Git repo of official docker images for MariaDB Server, [mariadb-server](https://github.com/ianmaguire/mariadb-server)
 
 ---
 
 -	[Travis CI:  
-	![build status badge](https://img.shields.io/travis/ianmaguire/mariadb-server-openshift/master.svg)](https://travis-ci.org/ianmaguire/mariadb-server-openshift/branches)
+	![build status badge](https://img.shields.io/travis/ianmaguire/mariadb-server/master.svg)](https://travis-ci.org/ianmaguire/mariadb-server/branches)
 
 ---
 
@@ -14,12 +14,12 @@ Include the the version number as a docker tag.
 
 To pull MariaDB Server version 10.3 run the following command:
 ```
-docker pull mariadb/server-openshift:10.3
+docker pull mariadb/server:10.3
 ```
 
 To run MariaDB Server version 10.3 run the following command:
 ```
-docker run -d --name mariadb -e MARIADB_ROOT_PASSWORD=mypassword mariadb/server-openshift:10.3
+docker run -d --name mariadb -e MARIADB_ROOT_PASSWORD=mypassword mariadb/server:10.3
 ```
 
 ### Configuration
