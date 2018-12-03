@@ -1,6 +1,12 @@
-FROM rhel:rhel7
+FROM registry.access.redhat.com/rhel7
 
-RUN VERSION=`cat version`; bash mariadb_repo_setup.sh; yum install -y mariadb-server-$VERSION
+COPY version /usr/src/version
+COPY mariadb_repo_setup.sh /usr/src/mariadb_repo_setup.sh
+
+RUN yum -y update; yum clean all
+RUN VERSION=`cat /usr/src/version`; bash /usr/src/mariadb_repo_setup.sh; yum install -y mariadb-server
+
+# RUN VERSION=`cat /usr/src/version`; curl downloads.mariadb.com/MariaDB/mariadb-$VERSION/yum/rhel7-amd64/rpms/MariaDB-$VERSION-centos73-x86_64-server.rpm --output /usr/src/MariaDB-$VERSION-centos73-x86_64-server.rpm; rpm -i /usr/src/MariaDB-$VERSION-centos73-x86_64-server.rpm
 
 EXPOSE 3306
 CMD ["service mariadb start"]
