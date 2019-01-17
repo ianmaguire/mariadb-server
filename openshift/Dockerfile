@@ -1,5 +1,5 @@
 FROM registry.access.redhat.com/rhel7
-
+EXPOSE 3306
 ARG MARIADB_ROOT_PW
 
 RUN subscription-manager register --org=11787140 --activationkey=MariaDB_Server_Container
@@ -11,7 +11,5 @@ RUN yum -y update
 RUN yum clean all
 RUN yum install -y mariadb-server
 RUN systemctl enable mariadb.service
-RUN mysql -e "SET PASSWORD FOR 'root'@'%' = PASSWORD('$MARIADB_ROOT_PW');"
-
-EXPOSE 3306
-CMD ["/usr/sbin/init"]
+RUN /usr/sbin/init
+CMD mysql -e "SET PASSWORD FOR 'root'@'%' = PASSWORD('$MARIADB_ROOT_PW');"
