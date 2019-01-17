@@ -12,7 +12,5 @@ RUN yum -y update
 RUN yum clean all
 RUN yum install -y mariadb-server
 RUN systemctl enable mariadb.service
-RUN /usr/sbin/init &
-RUN mysql -e "SET PASSWORD FOR 'root'@'$MARIADB_HOST_RANGE' = PASSWORD('$MARIADB_ROOT_PW');"
-
-CMD ["systemctl start mariadb"]
+ETRYPOINT /usr/sbin/init &
+CMD mysql -e "SET PASSWORD FOR 'root'@'$MARIADB_HOST_RANGE' = PASSWORD('$MARIADB_ROOT_PW');"
