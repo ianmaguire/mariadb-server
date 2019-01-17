@@ -12,5 +12,6 @@ RUN yum -y update
 RUN yum clean all
 RUN yum install -y mariadb-server
 RUN /etc/init.d/mysql start
-RUN mysql -e "SET PASSWORD FOR 'root'@'$MARIADB_HOST_RANGE' = PASSWORD('$MARIADB_ROOT_PW');"
-CMD ["/etc/init.d/mysql status"]
+RUN /etc/init.d/mysql status
+RUN mysql -u root -e "SET PASSWORD FOR 'root'@'$MARIADB_HOST_RANGE' = PASSWORD('$MARIADB_ROOT_PW');"
+CMD ["/etc/init.d/mysql restart"]
