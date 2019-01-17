@@ -6,7 +6,8 @@ RUN subscription-manager register --org=11787140 --activationkey=MariaDB_Server_
 
 COPY mariadb_repo_setup.sh /usr/src/mariadb_repo_setup.sh
 
-#RUN yum reinstall initscripts
+RUN yum -y update; yum clean all
+RUN yum reinstall initscripts
 RUN bash /usr/src/mariadb_repo_setup.sh
 RUN yum install -y mariadb-server
 
