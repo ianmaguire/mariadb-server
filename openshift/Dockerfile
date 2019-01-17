@@ -6,7 +6,6 @@ ARG MARIADB_HOST_RANGE=localhost
 
 COPY mariadb_repo_setup.sh /usr/src/mariadb_repo_setup.sh
 
-RUN setenforce 0
 RUN subscription-manager register --org=11787140 --activationkey=MariaDB_Server_Container
 RUN bash /usr/src/mariadb_repo_setup.sh
 RUN yum -y update
