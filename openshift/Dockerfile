@@ -9,10 +9,9 @@ COPY mariadb_repo_setup.sh /usr/src/mariadb_repo_setup.sh
 RUN bash /usr/src/mariadb_repo_setup.sh
 RUN yum -y update
 RUN yum clean all
-RUN yum install -y initscripts
 RUN yum install -y mariadb-server
+RUN systemctl enable mariadb.service
+RUN mysql -e "SET PASSWORD FOR 'root'@'%' = PASSWORD('$MARIADB_ROOT_PW');"
 
 EXPOSE 3306
-RUN service mariadb start
-
-CMD mysql -e "SET PASSWORD FOR 'root'@'%' = PASSWORD('$MARIADB_ROOT_PW');"
+CMD ["/usr/sbin/init"]
