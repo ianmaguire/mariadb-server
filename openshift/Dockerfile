@@ -13,5 +13,5 @@ RUN yum clean all
 RUN yum install -y hostname
 RUN yum install -y mariadb-server
 RUN /etc/init.d/mysql start
-RUN mysqladmin password "$MARIADB_ROOT_PW"
+RUN mysqladmin -h 127.0.0.1 -P 3306 password "$MARIADB_ROOT_PW"
 CMD ["/etc/init.d/mysql restart"]
