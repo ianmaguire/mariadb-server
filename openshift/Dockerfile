@@ -13,5 +13,5 @@ RUN yum clean all
 RUN yum install -y hostname
 RUN yum install -y mariadb-server
 RUN /etc/init.d/mysql start
-RUN export CONTAINER_IP=`hostname -i`; mysql -u root -h $CONTAINER_IP -P 3306 -e "SET PASSWORD FOR 'root'@'$CONTAINER_IP' = PASSWORD('$MARIADB_ROOT_PW');"
+RUN export CONTAINER_IP=`hostname -i`; mysql -u root -h $CONTAINER_IP -P 3306 -e "SET PASSWORD FOR 'root'@'$CONTAINER_IP' = PASSWORD('$MARIADB_ROOT_PW');"; sleep 1
 CMD ["/etc/init.d/mysql restart"]
