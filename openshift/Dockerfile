@@ -11,7 +11,8 @@ RUN bash /usr/src/mariadb_repo_setup.sh
 RUN yum -y update
 RUN yum clean all
 RUN yum install -y mariadb-server
-RUN systemctl enable mariadb.service
-RUN systemctl start mariadb.service
+RUN systemctl enable mariadb
+RUN mkdir /etc/systemd/system/mariadb.service.d/; echo -e '[Service]\nRestart=always' > /etc/systemd/system/mariadb.service.d/mariadv.conf
+RUN /sbin/init
 RUN mysql -e "SET PASSWORD FOR 'root'@'$MARIADB_HOST_RANGE' = PASSWORD('$MARIADB_ROOT_PW');"
 CMD ["systemctl status mariadb.service"]
