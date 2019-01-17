@@ -11,7 +11,7 @@ RUN bash /usr/src/mariadb_repo_setup.sh
 RUN yum -y update
 RUN yum clean all
 RUN yum install -y mariadb-server
-RUN /etc/init.d/mysql start
-RUN /etc/init.d/mysql status
+RUN /etc/init.d/mysql start --hostname=$HOSTNAME
+RUN /etc/init.d/mysql status --hostname=$HOSTNAME
 RUN mysql -u root -e "SET PASSWORD FOR 'root'@'$MARIADB_HOST_RANGE' = PASSWORD('$MARIADB_ROOT_PW');"
-CMD ["/etc/init.d/mysql restart"]
+CMD ["/etc/init.d/mysql restart --hostname=$HOSTNAME"]
