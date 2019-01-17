@@ -10,6 +10,7 @@ RUN subscription-manager register --org=11787140 --activationkey=MariaDB_Server_
 RUN bash /usr/src/mariadb_repo_setup.sh
 RUN yum -y update
 RUN yum clean all
+RUN yum install -y hostname
 RUN yum install -y mariadb-server
 RUN /etc/init.d/mysql start --hostname=$HOSTNAME
 RUN /etc/init.d/mysql status --hostname=$HOSTNAME
