@@ -2,9 +2,7 @@ FROM registry.access.redhat.com/rhel7
 
 EXPOSE 3306
 ARG MARIADB_ROOT_PW
-ARG MARIADB_HOST_RANGE=localhost
-
-VOLUME /var/lib/mysql
+ENV MARIADB_ROOT_PW $MARIADB_ROOT_PW
 
 COPY mariadb_repo_setup.sh /usr/src/mariadb_repo_setup.sh
 COPY server.cnf /etc/my.cnf.d/server.cnf
