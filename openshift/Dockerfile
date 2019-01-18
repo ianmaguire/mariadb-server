@@ -13,5 +13,5 @@ RUN yum -y update
 RUN yum clean all
 RUN yum install -y hostname
 RUN yum install -y mariadb-server
-RUN sed -i 's/ROOTPASSWORD/${MARIADB_ROOT_PW}/g' /etc/my.cnf.d/server.cnf
+RUN sed -i 's/ROOTPASSWORD/$MARIADB_ROOT_PW/g' /etc/my.cnf.d/server.cnf
 CMD ["/etc/init.d/mysql start"]
