@@ -12,5 +12,5 @@ RUN yum -y update
 RUN yum clean all
 RUN yum install -y hostname
 RUN yum install -y mariadb-server
-ENTRYPOINT /usr/local/bin/entrypoint.sh $MARIADB_ROOT_PW 
+ENTRYPOINT /usr/local/bin/entrypoint.sh
 CMD ["/etc/init.d/mysql start"]
