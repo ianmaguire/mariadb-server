@@ -1,13 +1,8 @@
 FROM registry.access.redhat.com/rhel7
 
-ARG MARIADB_ROOT_PASSWORD
-ENV MARIADB_ROOT_PW=$MARIADB_ROOT_PASSWORD
 EXPOSE 3306
-VOLUME /var
 
 COPY mariadb_repo_setup.sh /usr/src/mariadb_repo_setup.sh
-COPY server.cnf /etc/my.cnf.d/server.cnf
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 
 RUN subscription-manager register --org=11787140 --activationkey=MariaDB_Server_Container
 RUN bash /usr/src/mariadb_repo_setup.sh
@@ -15,5 +10,10 @@ RUN yum -y update
 RUN yum clean all
 RUN yum install -y hostname
 RUN yum install -y mariadb-server
+
+COPY server.cnf /etc/my.cnf.d/server.cnf
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+
 CMD ["/etc/init.d/mysql start"]
