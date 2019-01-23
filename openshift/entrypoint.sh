@@ -1,8 +1,12 @@
 #!/bin/bash
 set -e
 
-/etc/init.d/mysql/start
+/etc/init.d/mysql start
 
-mysqladmin -u root password ${MARIADB_ROOT_PW}
+if [ ! -z "${MARIADB_ROOT_PW}"]
+	mysqladmin -u root password ${MARIADB_ROOT_PW}
+fi
+
+/etc/init.d/mysql restart
 
 exec "$@"
