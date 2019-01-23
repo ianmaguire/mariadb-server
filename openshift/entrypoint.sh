@@ -9,8 +9,6 @@ then
 	mysqladmin -u root password $MARIADB_ROOT_PW
 fi
 
-sleep 3
-
-/etc/init.d/mysql restart
+#/etc/init.d/mysql restart
 
 exec "$@"
