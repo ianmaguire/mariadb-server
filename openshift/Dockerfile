@@ -11,7 +11,6 @@ RUN yum clean all
 RUN yum install -y hostname
 RUN yum install -y mariadb-server
 
-COPY server.cnf /etc/my.cnf.d/server.cnf
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

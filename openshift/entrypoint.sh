@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
-sed -i "s/ROOTPASSWORD/${MARIADB_ROOT_PW}/g" /etc/my.cnf.d/server.cnf
+/etc/init.d/mysql/start
+
+mysqladmin -u root password ${MARIADB_ROOT_PW}
 
 exec "$@"
