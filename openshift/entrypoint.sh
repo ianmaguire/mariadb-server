@@ -31,6 +31,7 @@ if [[ -n $MARIADB_ROOT_HOST ]]; then
 	echo "CREATE USER 'root'@'${MARIADB_ROOT_HOST}' IDENTIFIED BY '${MARIADB_ROOT_PASSWORD}' ;" | mysql -u root
 	echo "GRANT ALL ON *.* TO 'root'@'${MARIADB_ROOT_HOST}' WITH GRANT OPTION ;" | mysql -u root
 	echo "FLUSH PRIVILEGES ;" | mysql -u root
+fi
 
 if [[ -n $MARIADB_RANDOM_ROOT_PASSWORD ]]; then
 	export MARIADB_ROOT_PASSWORD="$(pwgen -1 32)"
