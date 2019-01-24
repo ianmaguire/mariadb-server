@@ -38,8 +38,8 @@ if [[ -n $MARIADB_RANDOM_ROOT_PASSWORD ]]; then
 	echo "GENERATED ROOT PASSWORD: $MARIADB_ROOT_PASSWORD"
 fi
 
-if [[ -n $MARIADB_RANDOM_ROOT_PASSWORD ]]; then
-	mysqladmin -u root password $MARIADB_RANDOM_ROOT_PASSWORD
+if [[ -n $MARIADB_ROOT_PASSWORD ]]; then
+	mysqladmin -u root password $MARIADB_ROOT_PASSWORD
 fi
 
 for f in /docker-entrypoint-initdb.d/*; do
