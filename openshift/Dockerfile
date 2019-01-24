@@ -6,7 +6,7 @@ VOLUME /var/lib/mysql
 
 COPY mariadb_repo_setup.sh /usr/src/mariadb_repo_setup.sh
 
-RUN mkdir -p /etc/mysql/mariadb.conf.d
+RUN mkdir -p /etc/mysql/
 RUN mkdir /docker-entrypoint-initdb.d
 RUN subscription-manager register --org=11787140 --activationkey=MariaDB_Server_Container
 RUN bash /usr/src/mariadb_repo_setup.sh
