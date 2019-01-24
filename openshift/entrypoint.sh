@@ -6,7 +6,7 @@ ln -s /etc/my.cnf.d /etc/mysql/mariadb.conf.d
 
 # if command starts with an option, prepend mysqld
 if [ "${1:0:1}" = '-' ]; then
-	mysqld "$@"
+	set -- mysqld --user=mysql "$@"
 else
 	/etc/init.d/mysql start
 fi
