@@ -35,13 +35,14 @@ for f in /docker-entrypoint-initdb.d/*; do
 	echo
 done
 
-if [[ -n $MARIADB_RANDOM_ROOT_PASSWORD ]]; then
-	export MARIADB_ROOT_PASSWORD="$(pwgen -1 32)"
-	echo "GENERATED ROOT PASSWORD: $MARIADB_ROOT_PASSWORD"
-fi
-
 if [[ -n $MARIADB_ROOT_PASSWORD ]]; then
 	mysqladmin -u root password $MARIADB_ROOT_PASSWORD
+elif [[ -n $MARIADB_RANDOM_ROOT_PASSWORD ]]; then
+	export MARIADB_ROOT_PASSWORD="$(pwgen -1 32)"
+	mysqladmin -u root password $MARIADB_ROOT_PASSWORD
+	echo "GENERATED ROOT PASSWORD: $MARIADB_ROOT_PASSWORD"
+else
+	echo "Root password is empty"
 fi
 
 # Link /etc/mysql/mariadb.conf.d/ to /etc/my.cnf.d/
